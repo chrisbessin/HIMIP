@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration file="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP.prj" location="D:\Matlab\GUI_SOLSA" name="SOLSA_HIMIP" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="1076097256" file="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP.prj" location="D:\Matlab\GUI_SOLSA" name="SOLSA_HIMIP" preferred-package-location="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.4\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>SOLSA_HIMIP</param.appname>
     <param.icon>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon.ico</param.icon>
     <param.icons>
@@ -8,9 +8,9 @@
       <file>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon_24.png</file>
       <file>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon_16.png</file>
     </param.icons>
-    <param.version>1.3</param.version>
-    <param.authnamewatermark />
-    <param.email />
+    <param.version>1.4</param.version>
+    <param.authnamewatermark>Thanh Bui</param.authnamewatermark>
+    <param.email>thanh.bui@eramet.com</param.email>
     <param.company>Eramet</param.company>
     <param.summary />
     <param.description />
@@ -21,10 +21,10 @@
     <param.logo />
     <param.install.notes />
     <param.target.install.notes />
-    <param.intermediate>${PROJECT_ROOT}\SOLSA_HIMIP\v1.3.1\for_testing</param.intermediate>
-    <param.files.only>${PROJECT_ROOT}\SOLSA_HIMIP\v1.3.1\for_redistribution_files_only</param.files.only>
-    <param.output>${PROJECT_ROOT}\SOLSA_HIMIP\v1.3.1\for_redistribution</param.output>
-    <param.logdir>${PROJECT_ROOT}\SOLSA_HIMIP\v1.3.1</param.logdir>
+    <param.intermediate>${PROJECT_ROOT}\SOLSA_HIMIP\v1.4\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\SOLSA_HIMIP\v1.4\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\SOLSA_HIMIP\v1.4\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\SOLSA_HIMIP\v1.4</param.logdir>
     <param.enable.clean.build>false</param.enable.clean.build>
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.standalone</param.target.type>
@@ -48,8 +48,6 @@
 	 -?  print help on how to use the application 
 	 varargin  input arguments</param.help.text>
     <unset>
-      <param.authnamewatermark />
-      <param.email />
       <param.summary />
       <param.description />
       <param.guid />
@@ -168,10 +166,10 @@
       <file>${PROJECT_ROOT}\Data\ControlPoints_0053.mat</file>
       <file>${PROJECT_ROOT}\Data\ControlPoints_ER-NC00-0061.mat</file>
       <file>${PROJECT_ROOT}\Data\ExtractedLib.mat</file>
-      <file>${PROJECT_ROOT}\Data\ExtractedLib_bk.mat</file>
       <file>${PROJECT_ROOT}\Data\SD01_0018.mat</file>
       <file>${PROJECT_ROOT}\Data\speclib.mat</file>
       <file>${PROJECT_ROOT}\Data\UserManual.pdf</file>
+      <file>${PROJECT_ROOT}\images\solsa_logo1.jpg</file>
     </fileset.package>
     <fileset.depfun>
       <file>${PROJECT_ROOT}\GuiAbout.fig</file>
@@ -186,33 +184,11 @@
       <file>${PROJECT_ROOT}\GuiRegistration.m</file>
       <file>${PROJECT_ROOT}\GuiUnmixing.fig</file>
       <file>${PROJECT_ROOT}\GuiUnmixing.m</file>
-      <file>${PROJECT_ROOT}\Unmixing\clsunsal.m</file>
-      <file>${PROJECT_ROOT}\Unmixing\soft.m</file>
-      <file>${PROJECT_ROOT}\Unmixing\sunsal.m</file>
-      <file>${PROJECT_ROOT}\Unmixing\vector_soft_row.m</file>
-      <file>${PROJECT_ROOT}\Utilities\access_spectra_data.m</file>
-      <file>${PROJECT_ROOT}\Utilities\compute_hull_removal.m</file>
-      <file>${PROJECT_ROOT}\Utilities\compute_reflectance.m</file>
-      <file>${PROJECT_ROOT}\Utilities\ContinuumRemovalSeg.m</file>
-      <file>${PROJECT_ROOT}\Utilities\cursorLocation.m</file>
-      <file>${PROJECT_ROOT}\Utilities\datatype2precision.m</file>
-      <file>${PROJECT_ROOT}\Utilities\decompose_mineral_names.m</file>
-      <file>${PROJECT_ROOT}\Utilities\generate_spectral_library.m</file>
-      <file>${PROJECT_ROOT}\Utilities\hyperspectraldata2rgbimg.m</file>
-      <file>${PROJECT_ROOT}\Utilities\LibFileToReflectance.m</file>
-      <file>${PROJECT_ROOT}\Utilities\normalize.m</file>
-      <file>${PROJECT_ROOT}\Utilities\precision2datatype.m</file>
-      <file>${PROJECT_ROOT}\Utilities\read_envihdr.m</file>
-      <file>${PROJECT_ROOT}\Utilities\read_spectra.m</file>
-      <file>${PROJECT_ROOT}\Utilities\ReadTextFile.m</file>
-      <file>${PROJECT_ROOT}\Utilities\search_data_files.m</file>
-      <file>${PROJECT_ROOT}\Utilities\write_envihdr.m</file>
-      <file>${PROJECT_ROOT}\Utilities\write_spectra.m</file>
     </fileset.depfun>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\SOLSA_HIMIP\v1.3.1\for_testing" name="SOLSA_HIMIP.exe" optional="false">D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.3.1\for_testing\SOLSA_HIMIP.exe</file>
-      <file location="${PROJECT_ROOT}\SOLSA_HIMIP\v1.3.1\for_testing" name="readme.txt" optional="true">D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.3.1\for_testing\readme.txt</file>
-      <file location="${PROJECT_ROOT}\SOLSA_HIMIP\v1.3.1\for_testing" name="splash.png" optional="false">D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.3.1\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\SOLSA_HIMIP\v1.4\for_testing" name="splash.png" optional="false">D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.4\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\SOLSA_HIMIP\v1.4\for_testing" name="SOLSA_HIMIP.exe" optional="false">D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.4\for_testing\SOLSA_HIMIP.exe</file>
+      <file location="${PROJECT_ROOT}\SOLSA_HIMIP\v1.4\for_testing" name="readme.txt" optional="true">D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.4\for_testing\readme.txt</file>
     </build-deliverables>
     <workflow />
     <matlab>
