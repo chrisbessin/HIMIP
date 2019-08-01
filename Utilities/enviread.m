@@ -79,7 +79,7 @@ case {12}
 case {13}
         format= 'uint32';
 case {14}
-         format= 'int64';
+        format= 'int64';
 case {15}
         format= 'uint64';
     otherwise

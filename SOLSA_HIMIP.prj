@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="1076097256" file="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP.prj" location="D:\Matlab\GUI_SOLSA" name="SOLSA_HIMIP" preferred-package-location="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.4\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="2993048462" file="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP.prj" location="D:\Matlab\GUI_SOLSA" name="SOLSA_HIMIP" preferred-package-location="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.4\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>SOLSA_HIMIP</param.appname>
     <param.icon>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon.ico</param.icon>
     <param.icons>
@@ -29,8 +29,8 @@
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.standalone</param.target.type>
     <param.support.packages />
-    <param.web.mcr>false</param.web.mcr>
-    <param.package.mcr>true</param.package.mcr>
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
     <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
@@ -60,6 +60,8 @@
       <param.user.defined.mcr.options />
       <param.target.type />
       <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
       <param.no.mcr />
       <param.web.mcr.name />
       <param.package.mcr.name />
@@ -184,6 +186,28 @@
       <file>${PROJECT_ROOT}\GuiRegistration.m</file>
       <file>${PROJECT_ROOT}\GuiUnmixing.fig</file>
       <file>${PROJECT_ROOT}\GuiUnmixing.m</file>
+      <file>${PROJECT_ROOT}\Unmixing\clsunsal.m</file>
+      <file>${PROJECT_ROOT}\Unmixing\soft.m</file>
+      <file>${PROJECT_ROOT}\Unmixing\sunsal.m</file>
+      <file>${PROJECT_ROOT}\Unmixing\vector_soft_row.m</file>
+      <file>${PROJECT_ROOT}\Utilities\access_spectra_data.m</file>
+      <file>${PROJECT_ROOT}\Utilities\compute_hull_removal.m</file>
+      <file>${PROJECT_ROOT}\Utilities\compute_reflectance.m</file>
+      <file>${PROJECT_ROOT}\Utilities\ContinuumRemovalSeg.m</file>
+      <file>${PROJECT_ROOT}\Utilities\cursorLocation.m</file>
+      <file>${PROJECT_ROOT}\Utilities\datatype2precision.m</file>
+      <file>${PROJECT_ROOT}\Utilities\decompose_mineral_names.m</file>
+      <file>${PROJECT_ROOT}\Utilities\generate_spectral_library.m</file>
+      <file>${PROJECT_ROOT}\Utilities\hyperspectraldata2rgbimg.m</file>
+      <file>${PROJECT_ROOT}\Utilities\LibFileToReflectance.m</file>
+      <file>${PROJECT_ROOT}\Utilities\normalize.m</file>
+      <file>${PROJECT_ROOT}\Utilities\precision2datatype.m</file>
+      <file>${PROJECT_ROOT}\Utilities\read_envihdr.m</file>
+      <file>${PROJECT_ROOT}\Utilities\read_spectra.m</file>
+      <file>${PROJECT_ROOT}\Utilities\ReadTextFile.m</file>
+      <file>${PROJECT_ROOT}\Utilities\search_data_files.m</file>
+      <file>${PROJECT_ROOT}\Utilities\write_envihdr.m</file>
+      <file>${PROJECT_ROOT}\Utilities\write_spectra.m</file>
     </fileset.depfun>
     <build-deliverables>
       <file location="${PROJECT_ROOT}\SOLSA_HIMIP\v1.4\for_testing" name="splash.png" optional="false">D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.4\for_testing\splash.png</file>

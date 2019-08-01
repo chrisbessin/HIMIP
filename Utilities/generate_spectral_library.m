@@ -1,5 +1,8 @@
 function generate_spectral_library(spectraPath, spectralLibFile)
 
+% Generate the spectral library from files containing in a specified path
+
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
 
 addpath('D:\Matlab\Utilities\')
 fid = fopen(spectralLibFile, 'w');

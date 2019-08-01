@@ -1,6 +1,8 @@
 function [xreduced, ureduced] = featureReduction(X)
 % Feature reduction using PCA
 
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 n= size(X);
 sigma = 1/n(1) * (X') *X;
 [u,s,~] = svd(sigma);

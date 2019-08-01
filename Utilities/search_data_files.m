@@ -2,6 +2,8 @@ function [sampleFile, whiterefFile, darkrefFile] = search_data_files (data_path)
 
 % Search corresponding file names for hyperspectral data from a data path
 
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 file_name = dir(data_path);
 file_name_raw = {};
 k = 1;

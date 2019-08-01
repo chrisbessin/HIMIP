@@ -712,6 +712,7 @@ fprintf('Unmixing, finished! \n')
     
 % Reshape the unmixing result matrix
 X_hat = reshape(X_hat_2d', [Np, Nc, Nm]);
+X_hat = (X_hat - min(X_hat(:)))/(max(X_hat(:))-min(X_hat(:)));
 handles.X_hat = X_hat;
 handles.rgb_imgCrop = rgb_imgCrop;
 
@@ -730,8 +731,6 @@ assignin('base', 'X_hat_2d', X_hat_2d)
 
 % Call callback function to display data
 mineralListLb_Callback(handles.mineralListLb, eventdata, handles)
-
-
 
 % Update handles
 guidata(hObject, handles)
@@ -753,7 +752,8 @@ try
     X_hat = handles.X_hat;
     rgb_imgCrop = handles.rgb_imgCrop;
     res = handles.resolution;
-    save(fileNamePath, 'X_hat', 'rgb_imgCrop', 'res')
+    rmse = handles.rmse;
+    save(fileNamePath, 'X_hat', 'rgb_imgCrop', 'res', 'rmse')
     msgbox('Unmixing results have been save successfully!')
 catch
     msgbox('Problem during loading data')
@@ -781,6 +781,11 @@ try
 catch
     msgbox('Loaded data are not in the correct format', 'Error', 'error')
     return
+end
+if exist('rmse', 'var')
+    handles.rmse = rmse;
+else
+    handles.rmse = zeros(size(X_hat,1), size(X_hat,2));
 end
 % Call callback function to display data
 mineralListLb_Callback(handles.mineralListLb, eventdata, handles)
@@ -811,6 +816,12 @@ catch
 end
 listStr = cellstr(get(hObject,'String'));
 listVal = get(hObject, 'Value');
+
+% Check if handles.rmse exists
+if ~isfield(handles, 'rmse')
+    handles.rmse = zeros(size(X_hat,1), size(X_hat,2));
+end
+    
 
 % Prepare the data for displaying on listbox 
 mineralList = handles.mineralList;

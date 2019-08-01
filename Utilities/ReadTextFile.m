@@ -1,5 +1,7 @@
 function data = ReadTextFile(filePath, SkipNoLines)
 
+
+
 fid = fopen(filePath, 'r');
 for k=1:SkipNoLines
     tline = fgets(fid);

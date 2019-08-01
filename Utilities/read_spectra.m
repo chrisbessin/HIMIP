@@ -1,5 +1,5 @@
 function [data, legendTxt] = read_spectra(filename)
-% Read spectra from a .txt file
+% Read spectra from a .txt file, complying with ENVI spectral file
 
 % Author: Thanh Bui (thanh.bui@erametgroup.com)
 

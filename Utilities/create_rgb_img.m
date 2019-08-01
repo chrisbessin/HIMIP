@@ -1,6 +1,10 @@
 
 function [rgb_img] = create_rgb_img(refl, wavelength, R_WL, G_WL, B_WL)
 
+% Extract an RGB image from hyperspectral reflectance with corresponding
+% wavelengths for r, g, b channels
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 resolution = (max(wavelength)-min(wavelength))/length(wavelength);
 R_index = round((R_WL-min(wavelength))/resolution);
 G_index = round((G_WL-min(wavelength))/resolution);
