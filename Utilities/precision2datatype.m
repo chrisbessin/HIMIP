@@ -1,4 +1,7 @@
 function data_type = precision2datatype(precision)
+% Convert precision to data type complied with ENVI data format
+
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
 
 switch precision
     case 'uint16'

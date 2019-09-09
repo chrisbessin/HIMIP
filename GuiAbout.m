@@ -24,6 +24,8 @@ function varargout = GuiAbout(varargin)
 
 % Last Modified by GUIDE v2.5 15-Jan-2019 21:08:35
 
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...

@@ -23,6 +23,7 @@
 %
 % Author      : Rodney Thomson
 %               http://iheartmatlab.blogspot.com
+%
 % Modified by Thanh Bui to handle multiple axes
 %===============================================================================                   
 function cursorLocation(obj, event, location, format_str, text_color)

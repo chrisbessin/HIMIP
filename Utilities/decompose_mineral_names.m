@@ -1,7 +1,7 @@
 function [mineralDict, mineralList] = decompose_mineral_names(min_names)
 % Extract mineral names
 
-% Author: Thanh Bui
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
 
 mineralList = min_names';
 % Remove file extension in the file name

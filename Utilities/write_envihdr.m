@@ -1,4 +1,3 @@
-
 function write_envihdr(info, filereflhdr)
 % Write header file for ENVI file
 % Example: 

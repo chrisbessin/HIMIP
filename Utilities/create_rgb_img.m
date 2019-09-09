@@ -1,4 +1,3 @@
-
 function [rgb_img] = create_rgb_img(refl, wavelength, R_WL, G_WL, B_WL)
 
 % Extract an RGB image from hyperspectral reflectance with corresponding

@@ -24,6 +24,8 @@ function varargout = GuiSolsa(varargin)
 
 % Last Modified by GUIDE v2.5 28-Dec-2018 15:37:21
 
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...

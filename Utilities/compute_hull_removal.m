@@ -1,6 +1,9 @@
 function [refl_cr, wavelength, rgb_img_cr] = compute_hull_removal(reflFile, reflCRFile)
 
 % Read ENVI reflectance file and compute hull correction data
+
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 if ~exist('reflCRFile', 'var') % if reflFile is not an argument   
     reflCR_file = strcat(reflFile(1:end-4), 'CR', sampleFile(end-3:end));
     reflCR_hdr_file = strcat(reflFile(1:end-4), 'CR.hdr');

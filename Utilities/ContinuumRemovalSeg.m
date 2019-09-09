@@ -10,7 +10,7 @@ function [refl_cr, refl_hull, seg_idx] = ContinuumRemovalSeg (wavelength, refl, 
 %     refl_cr: the continuum removal of the input reflectance
 %     refl_hull: the background (hull) curve
 %     seg_idx: the indices of extracted segments (one segment for each row: start index - end index)
-% @Author: Thanh Bui
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
 % Example: 
 % Given a hyperspectral reflectance data Spectra (n,m, number of bands) and
 % the wavelength
@@ -18,7 +18,6 @@ function [refl_cr, refl_hull, seg_idx] = ContinuumRemovalSeg (wavelength, refl, 
 % figure, plot(squeeze(Spectra(100,100,:)))
 % [cr, hull, seg] = ContinuumRemovalSeg(wavelength, squeeze(Spectra(100,100,:)), 6);
 % figure, plot(wavelength, cr)
-
 
 refl = refl(:);
 % Remove noise 

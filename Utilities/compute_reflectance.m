@@ -1,6 +1,8 @@
 function [refl, wavelength, rgb_img, rgb_img_he] = compute_reflectance(sampleFile, whiterefFile, darkrefFile, short_range, hullR, reflFile)
 
-% Read ENVI files and compute the relative reflectance
+% Read hyperspectral ENVI data files and compute the relative reflectance
+
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
 
 if ~exist('reflFile', 'var') % if reflFile is not an argument
     refl_file = strcat(sampleFile(1:end-4), '_refl', sampleFile(end-3:end));

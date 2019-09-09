@@ -1,6 +1,7 @@
 function generate_spectral_library(spectraPath, spectralLibFile)
 
-% Generate the spectral library from files containing in a specified path
+% Generate the spectral library from files identified by a specified
+% directory
 
 % Author: Thanh Bui (thanh.bui@erametgroup.com)
 
@@ -18,7 +19,6 @@ A = zeros(length(idx), m);
 min_names = {m};
 
 wavelength_ref = wavelength_temp(idx);
-
 
 for i = 1: m% length(listdir)
     filePath = fullfile(spectraPath, listdir(i+2).name)

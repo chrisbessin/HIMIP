@@ -1,6 +1,7 @@
 function [sam, mae] = metric_calc(x, y)
 
 % Calculate spectral angle mapper and mean absolute error between hyperspetral images 
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
 
 %x = randn(10, 4);
 %y = randn(10, 4);

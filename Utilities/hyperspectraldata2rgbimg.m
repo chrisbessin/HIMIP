@@ -1,8 +1,8 @@
 
 function rgb_img = hyperspectraldata2rgbimg(data, wavelength, R_WL, G_WL, B_WL)
-% Create rgb image from hyperspectral data
+% Create an rgb image from hyperspectral data with specified wavelengths
 
-% Author: Thanh Bui (bmthanhvt@gmail.com)
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
 
 resolution = (max(wavelength)-min(wavelength))/length(wavelength);
 r_index = round((R_WL-min(wavelength))/resolution);

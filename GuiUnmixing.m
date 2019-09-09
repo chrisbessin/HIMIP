@@ -24,6 +24,8 @@ function varargout = GuiUnmixing(varargin)
 
 % Last Modified by GUIDE v2.5 21-May-2019 10:24:28
 
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
@@ -164,6 +166,22 @@ set(handles.reflectanceEdit, 'String', fullfile(path, filename))
 dataFile = fullfile(path, filename);
 handles.reflectancePath = dataFile;
 [data, info, rgb_img] = access_spectra_data(dataFile);
+dataWavelength = info.Wavelength;
+wavelength = handles.wavelength;
+
+assignin('base', 'data', data)
+assignin('base', 'info', info)
+assignin('base', 'wavelength', wavelength)
+
+% Handle the case where facing different spectral resolution
+if length(wavelength) ~= length(dataWavelength)
+    index = zeros(length(wavelength),1);
+    for i = 1: length(wavelength)
+        band = wavelength(i);
+        [~, index(i)] = min(abs(dataWavelength-band)); 
+    end
+    data = data(:,:,index);
+end
 
 handles.data = data;
 handles.info = info;
@@ -610,6 +628,7 @@ function executePb_Callback(hObject, eventdata, handles)
 % Load library
 A = handles.A;
 wavelength = handles.wavelength;
+assignin('base', 'wavelength', wavelength)
 % Get a data source type
 dataSource = get(handles.dataSourcePm, 'Value');
 
@@ -653,6 +672,7 @@ Nb = size(refl,3);      % Number of bands
 
 X_hat_2d = zeros(Nm, Nc*Np);
 refl_2d = reshape(refl,[Nc*Np,Nb]);
+assignin('base', 'refl_2d', refl_2d)
 
 f = waitbar(0,'1','Name','Unmixing progress...',...
     'CreateCancelBtn','setappdata(gcbf,''canceling'',1)');

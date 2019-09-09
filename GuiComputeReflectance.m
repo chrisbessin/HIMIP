@@ -22,8 +22,10 @@ function varargout = GuiComputeReflectance(varargin)
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
 % Edit the above text to modify the response to help GuiComputeReflectance
-
 % Last Modified by GUIDE v2.5 27-Dec-2018 15:48:32
+
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...

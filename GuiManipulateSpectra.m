@@ -23,6 +23,9 @@ function varargout = GuiManipulateSpectra(varargin)
 % Edit the above text to modify the response to help GuiManipulateSpectra
 
 % Last Modified by GUIDE v2.5 21-May-2019 09:29:32
+
+% Author: Thanh Bui (thanh.bui@erametgroup.com)
+
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
@@ -584,7 +587,7 @@ r_wl = min(wavelength) + (max(wavelength) - min(wavelength))*get(hObject, 'Value
 set(handles.rEdit, 'String', r_wl);
 handles.r_wl = r_wl;
 
-% Update handles
+% Update handles structure
 guidata(hObject, handles)
 
 % --- Executes during object creation, after setting all properties.
@@ -747,8 +750,6 @@ function bSlider_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
-
-
 
 function bEdit_Callback(hObject, eventdata, handles)
 % hObject    handle to bEdit (see GCBO)
@@ -935,7 +936,6 @@ handles.xStep = round((xStep-1)/2);
 
 % Update handle structure
 guidata(hObject, handles)
-
 
 
 

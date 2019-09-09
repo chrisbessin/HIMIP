@@ -1,8 +1,5 @@
 function [reflsm, refl, wavelength] = LibFileToReflectance(filePath, SkipNoLines)
-% Read a spectrum from ENVI format data file and return the spectum,
-% wavelength as well as the noise-filtered spectrum using Savitzky Golay filter
 
-% Author: Thanh Bui (thanh.bui@erametgroup.com)
 
 order = 2;
 framelen = 5;
