@@ -1,4 +1,4 @@
-function [sampleFile, whiterefFile, darkrefFile] = search_data_files (data_path)
+function [sampleFile, whiterefFile, darkrefFile] = SearchDataFiles (data_path)
 
 % Search corresponding file names for hyperspectral data from a data path
 

@@ -1,5 +1,5 @@
 function [xreduced, ureduced, xapp] = BandReduction(X, VarThresh)
-% Dimensionality reduction using PCA, and 
+% Dimensionality reduction using PCA
 % Input:
 %     X (n x m x number of bands): the input reflectance
 %     VarThresh: the percentage of variance to be retained
@@ -26,5 +26,7 @@ xreduced_temp = X_2D*ureduced;
 xreduced = reshape(xreduced_temp, [n(1), n(2), k]);
 xapp_temp = (X_2D*ureduced)*ureduced';  % Reconstructed X
 xapp = reshape(xapp_temp, [n(1), n(2), n(3)]);
+
+
     
 

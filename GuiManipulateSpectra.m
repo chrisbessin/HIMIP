@@ -382,7 +382,7 @@ if ~filename  % filename is empty
 end
 handles.currentPath = path;
 filePath = fullfile(path, filename);
-write_spectra(filePath, imgFile, spectra, spectraIndices, saveAll);
+WriteSpectra(filePath, imgFile, spectra, spectraIndices, saveAll);
 
 % Update handles
 guidata(hObject, handles)
@@ -412,7 +412,7 @@ end
 handles.currentPath = path;
 filePath = fullfile(path, filename);
 singleSpec = get(handles.singleSpecCB, 'Value');
-[data, legendTxt] = read_spectra(filePath);
+[data, legendTxt] = ReadSpectra(filePath);
 if mean(data(:,1) < 10)
     data(:,1) = 1000*data(:,1);
 end

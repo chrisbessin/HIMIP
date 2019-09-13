@@ -23,14 +23,14 @@ end
 file_hdr = strcat(sampleFile(1:end-4), '.hdr');
 if (exist(refl_file, 'file'))   %the reflectance was already computed
     fprintf('The reflectance existed \n')
-    info = read_envihdr(refl_hdr_file);
+    info = ReadEnviHdr(refl_hdr_file);
     wavelength = info.Wavelength;
     lines = info.lines;
     samples = info.samples;
     bands = info.bands;
     refl = multibandread(refl_file, [lines, samples, bands],'single',0, 'bil','ieee-le' ); 
 else        
-    info = read_envihdr(file_hdr);
+    info = ReadEnviHdr(file_hdr);
     lines = info.lines;
     samples = info.samples;
     bands = info.bands;
@@ -69,7 +69,7 @@ else
     % Write file
     assignin('base', 'refl', refl)
     multibandwrite(refl, refl_file, 'bil', 'precision', 'single'); % specify the precision is very important
-    write_envihdr(info, refl_hdr_file);
+    WriteEnviHdr(info, refl_hdr_file);
 end
 % Display the false-color image of the sample
 %R_WL = 1250; G_WL = 1500; B_WL = 1750; 
@@ -123,7 +123,7 @@ elseif hullR
     end
     
     multibandwrite(refl_cr, reflCR_file, 'bil', 'precision', 'single'); % specify the precision is very important
-    write_envihdr(info, reflCR_hdr_file);
+    WriteEnviHdr(info, reflCR_hdr_file);
     delete(f)
 end
     

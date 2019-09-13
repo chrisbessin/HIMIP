@@ -1,4 +1,4 @@
-function write_spectra (filename, imgFile, spectra, spectraIndices, saveAll)
+function WriteSpectra (filename, imgFile, spectra, spectraIndices, saveAll)
 % Write spectra to a .txt file complied with ENVI spectra file format
 
 % Author: Thanh Bui (thanh.bui@erametgroup.com)

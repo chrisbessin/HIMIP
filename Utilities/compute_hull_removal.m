@@ -15,7 +15,7 @@ end
 refl_hdr = strcat(reflFile(1:end-4), '.hdr');
 if (exist(reflCR_file, 'file'))   %the reflectance was already computed
     fprintf('The continuum removal existed \n')
-    info = read_envihdr(reflCR_hdr_file);
+    info = ReadEnviHdr(reflCR_hdr_file);
     wavelength = info.Wavelength;
     lines = info.lines;
     samples = info.samples;
@@ -23,7 +23,7 @@ if (exist(reflCR_file, 'file'))   %the reflectance was already computed
     refl = multibandread(reflFile, [lines, samples, bands],'single',0, 'bil','ieee-le' );
     refl_cr = multibandread(reflCR_file, [lines, samples, bands],'single',0, 'bil','ieee-le' ); 
 else        
-    info = read_envihdr(refl_hdr);
+    info = ReadEnviHdr(refl_hdr);
     lines = info.lines;
     samples = info.samples;
     bands = info.bands;
@@ -51,7 +51,7 @@ else
     end
     
     multibandwrite(refl_cr, reflCR_file, 'bil', 'precision', 'single'); % specify the precision is very important
-    write_envihdr(info, reflCR_hdr_file);
+    WriteEnviHdr(info, reflCR_hdr_file);
     delete(f)
     
 end

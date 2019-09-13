@@ -147,8 +147,6 @@ function specLib_Pb_CreateFcn(hObject, eventdata, handles)
 
 
 
-
-
 % 1) ============ Data selection ==========================================
 
 % --- Executes on button press in reflectancePb.
@@ -773,7 +771,9 @@ try
     rgb_imgCrop = handles.rgb_imgCrop;
     res = handles.resolution;
     rmse = handles.rmse;
-    save(fileNamePath, 'X_hat', 'rgb_imgCrop', 'res', 'rmse')
+    mineralList = handles.mineralList;
+    mineralDict = handles.mineralDict;
+    save(fileNamePath, 'X_hat', 'rgb_imgCrop', 'res', 'rmse', 'mineralList', 'mineralDict')
     msgbox('Unmixing results have been save successfully!')
 catch
     msgbox('Problem during loading data')
@@ -792,7 +792,20 @@ function loadUmPb_Callback(hObject, eventdata, handles)
 if ~oCancel
     return
 end
+if exist('mineralDict', 'var')
+    clear mineralDict
+end
+if exist('mineralList', 'var')
+    clear mineralList
+end
 load(fullfile(pathName, fileName))
+if exist('mineralDict', 'var')
+    handles.mineralDict = mineralDict;
+end
+if exist('mineralList', 'var')
+    handles.mineralList = mineralList;
+end
+
 set(handles.unmixingFileST, 'String', fileName)
 try
     handles.X_hat = X_hat;
@@ -807,11 +820,16 @@ if exist('rmse', 'var')
 else
     handles.rmse = zeros(size(X_hat,1), size(X_hat,2));
 end
-% Call callback function to display data
-mineralListLb_Callback(handles.mineralListLb, eventdata, handles)
 
 % Update handles
 guidata(hObject, handles)
+
+% Call callback function to display data
+set(handles.mineralListLb, 'Value', length(handles.mineralDict.keys)) % Set the Value parameter of the listbox
+set(handles.mineralListLb, 'String', handles.mineralDict.keys)
+mineralListLb_Callback(handles.mineralListLb, eventdata, handles)
+
+
 
 
 
@@ -842,20 +860,26 @@ if ~isfield(handles, 'rmse')
     handles.rmse = zeros(size(X_hat,1), size(X_hat,2));
 end
     
-
 % Prepare the data for displaying on listbox 
 mineralList = handles.mineralList;
-assignin('base', 'mineralList', mineralList);
+assignin('base', 'mineralList', mineralList); % Display a variable in the workspace for debugging
 mineralDict = handles.mineralDict;
 assignin('base', 'mineralDict', mineralDict);
-keySet = mineralDict.keys;  % Mineral name
+keySet = mineralDict.keys;      % Mineral name
 valueSet = mineralDict.values;  % 
 values = valueSet(listVal);
 keys = keySet(listVal);
 
+assignin('base', 'values', values)
+
 % Display the first selected mineral on the detail listbox
-mineralInd = mineralDict(listStr{listVal(1)});
-set(handles.mineralDetailLb, 'String', mineralList(mineralInd), 'Value', 1);
+try
+    mineralInd = mineralDict(listStr{listVal(1)});
+    set(handles.mineralDetailLb, 'String', mineralList(mineralInd), 'Value', 1);
+    handles.mineralInd = mineralInd; % Save variable
+catch
+    disp('The specified key is not present in the container')
+end
 
 
 % Display unmixing results
@@ -866,7 +890,9 @@ subplot (1, nPlot, 1), imagesc(res.x, res.y, rgb_imgCrop), xlabel('mm'), ylabel(
 title('False color RGB image')
 colorbar
 for i = 1: length(listVal)
-    subplot(1, nPlot, i+1), imagesc(res.x, res.y, sum(X_hat(:,:,values{i}),3)), 
+    libind = values{i};
+    libind_chop = libind(libind <=size(X_hat,3));
+    subplot(1, nPlot, i+1), imagesc(res.x, res.y, sum(X_hat(:,:,libind_chop),3)), 
     title(keys{i}, 'Interpreter', 'none')
     xlabel('mm')
     h = colorbar; h.Limits = [0 1];
@@ -875,7 +901,7 @@ subplot(1, nPlot, nPlot), imagesc(res.x, res.y, handles.rmse),
 title('RMSE'),
 colorbar;
 
-handles.mineralInd = mineralInd; % Save variable
+
 % Update handles
 guidata(hObject, handles);
 
@@ -1150,7 +1176,6 @@ end
 % ====================================================
 % 6) Change hyperspectral bands to obtain rgb image
 
-
 % --- Executes on slider movement.
 function rSlider_Callback(hObject, eventdata, handles)
 % hObject    handle to rSlider (see GCBO)
@@ -1334,7 +1359,6 @@ if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColo
 end
 
 
-
 function bEdit_Callback(hObject, eventdata, handles)
 % hObject    handle to bEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1372,8 +1396,6 @@ function bEdit_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
 
 
 % --- Executes on button press in updateCbPb.

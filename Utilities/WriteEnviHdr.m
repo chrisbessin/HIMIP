@@ -1,8 +1,8 @@
-function write_envihdr(info, filereflhdr)
+function WriteEnviHdr(info, filereflhdr)
 % Write header file for ENVI file
 % Example: 
 %    write_envihdr(info, filename.hdr);
-% where info has the same format as the one obtained from the read_envihdr
+% where info has the same format as the one obtained from the ReadEnviHdr
 % function
 
 % Author: Thanh Bui (thanh.bui@erametgroup.com)

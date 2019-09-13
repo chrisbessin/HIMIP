@@ -342,7 +342,7 @@ if (handles.hyperData) % Hyperspectral data
     end
     % Write file
     multibandwrite(data, registeredDataPath, 'bil', 'precision', precision);
-    write_envihdr(info, registeredHdrPath);  
+    WriteEnviHdr(info, registeredHdrPath);  
 else
     [fileName, filePath, oCancel] = uiputfile({'*.jpg'; '*.png'}, 'Specify a file', handles.currentPath);
     if ~oCancel

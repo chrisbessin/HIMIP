@@ -19,7 +19,7 @@ function [varargout] = enviread(varargin)
 % Version 1: 11-Jul-2007 15:11:13
 
 %% check for header reader
-if exist('read_envihdr.m','file') == 0
+if exist('ReadEnviHdr.m','file') == 0
     error('This function requires READ_ENVIHDR.m')
 end
 %% READ HEADER INFO
@@ -30,7 +30,7 @@ if nargin == 2
     hdrfile = varargin{2};
 end
 % Get image size and map data from header
-info = read_envihdr(hdrfile);
+info = ReadEnviHdr(hdrfile);
 %% Make geo-location vectors
 if isfield(info.map_info,'mapx') && isfield(info.map_info,'mapy')
     xi = info.map_info.image_coords(1);

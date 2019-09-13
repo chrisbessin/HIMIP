@@ -375,7 +375,7 @@ hullR = get(handles.hullRemovalCb, 'Value');
 if (handles.dataPath ~= ' ') % Using datapath
     fprintf('Automatic selection of files \n')
     fprintf('Computing reflectance ..., please wait ...\n')
-    [sampleFile, whiterefFile, darkrefFile] = search_data_files (handles.dataPath);
+    [sampleFile, whiterefFile, darkrefFile] = SearchDataFiles (handles.dataPath);
     reflFile = handles.reflectanceFullPath;
     [refl, wavelength, rgb_img, rgb_img_he] = compute_reflectance(sampleFile, whiterefFile, darkrefFile, short_range, hullR, reflFile);
     fprintf('... Computation finished \n')

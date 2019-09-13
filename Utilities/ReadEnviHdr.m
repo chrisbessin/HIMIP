@@ -1,4 +1,4 @@
-function info = read_envihdr(hdrfile)
+function info = ReadEnviHdr(hdrfile)
 % read_envihdr reads and return ENVI image file header information.
 %   info = read_envihdr('hdr_file.hdr') reads the ASCII ENVI-generated image
 %   header file and returns all the information in a structure of

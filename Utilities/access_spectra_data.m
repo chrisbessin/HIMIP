@@ -5,7 +5,7 @@ function [data, info, rgb_img] = access_spectra_data(dataFile)
 % Author: Thanh Bui (thanh.bui@erametgroup.com)
 
 hdrFile = strcat(dataFile(1:end-4), '.hdr');
-info = read_envihdr(hdrFile);
+info = ReadEnviHdr(hdrFile);
 wavelength = info.Wavelength;
 lines = info.lines;
 samples = info.samples;

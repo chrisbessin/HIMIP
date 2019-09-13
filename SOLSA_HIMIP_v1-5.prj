@@ -1,16 +1,16 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="2993048462" file="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP.prj" location="D:\Matlab\GUI_SOLSA" name="SOLSA_HIMIP" preferred-package-location="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.4\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="142688431" file="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP_v1-5.prj" location="D:\Matlab\GUI_SOLSA" name="SOLSA_HIMIP_v1-5" preferred-package-location="D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.5\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>SOLSA_HIMIP</param.appname>
-    <param.icon>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon.ico</param.icon>
+    <param.icon>${PROJECT_ROOT}\SOLSA_HIMIP_v1-5_resources\icon.ico</param.icon>
     <param.icons>
-      <file>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon_48.png</file>
-      <file>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon_32.png</file>
-      <file>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon_24.png</file>
-      <file>${PROJECT_ROOT}\SOLSA_HIMIP_resources\icon_16.png</file>
+      <file>${PROJECT_ROOT}\SOLSA_HIMIP_v1-5_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\SOLSA_HIMIP_v1-5_resources\icon_32.png</file>
+      <file>${PROJECT_ROOT}\SOLSA_HIMIP_v1-5_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\SOLSA_HIMIP_v1-5_resources\icon_16.png</file>
     </param.icons>
     <param.version>1.5</param.version>
     <param.authnamewatermark>Thanh Bui</param.authnamewatermark>
-    <param.email>thanh.bui@eramet.com</param.email>
+    <param.email />
     <param.company>Eramet</param.company>
     <param.summary />
     <param.description />
@@ -48,6 +48,7 @@
 	 -?  print help on how to use the application 
 	 varargin  input arguments</param.help.text>
     <unset>
+      <param.email />
       <param.summary />
       <param.description />
       <param.guid />
@@ -166,10 +167,8 @@
     <fileset.package>
       <file>${PROJECT_ROOT}\Data\ControlPoints.mat</file>
       <file>${PROJECT_ROOT}\Data\ControlPoints_0053.mat</file>
-      <file>${PROJECT_ROOT}\Data\ControlPoints_ER-NC00-0061.mat</file>
       <file>${PROJECT_ROOT}\Data\ExtractedLib.mat</file>
       <file>${PROJECT_ROOT}\Data\SD01_0018.mat</file>
-      <file>${PROJECT_ROOT}\Data\speclib.mat</file>
       <file>${PROJECT_ROOT}\Data\UserManual.pdf</file>
       <file>${PROJECT_ROOT}\images\solsa_logo1.jpg</file>
     </fileset.package>
@@ -202,12 +201,12 @@
       <file>${PROJECT_ROOT}\Utilities\LibFileToReflectance.m</file>
       <file>${PROJECT_ROOT}\Utilities\normalize.m</file>
       <file>${PROJECT_ROOT}\Utilities\precision2datatype.m</file>
-      <file>${PROJECT_ROOT}\Utilities\read_envihdr.m</file>
-      <file>${PROJECT_ROOT}\Utilities\read_spectra.m</file>
+      <file>${PROJECT_ROOT}\Utilities\ReadEnviHdr.m</file>
+      <file>${PROJECT_ROOT}\Utilities\ReadSpectra.m</file>
       <file>${PROJECT_ROOT}\Utilities\ReadTextFile.m</file>
-      <file>${PROJECT_ROOT}\Utilities\search_data_files.m</file>
-      <file>${PROJECT_ROOT}\Utilities\write_envihdr.m</file>
-      <file>${PROJECT_ROOT}\Utilities\write_spectra.m</file>
+      <file>${PROJECT_ROOT}\Utilities\SearchDataFiles.m</file>
+      <file>${PROJECT_ROOT}\Utilities\WriteEnviHdr.m</file>
+      <file>${PROJECT_ROOT}\Utilities\WriteSpectra.m</file>
     </fileset.depfun>
     <build-deliverables>
       <file location="${PROJECT_ROOT}\SOLSA_HIMIP\v1.5\for_testing" name="readme.txt" optional="true">D:\Matlab\GUI_SOLSA\SOLSA_HIMIP\v1.5\for_testing\readme.txt</file>

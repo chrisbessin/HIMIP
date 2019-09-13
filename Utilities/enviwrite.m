@@ -1,4 +1,4 @@
-function i=enviwrite(image,fname);
+function i=enviwrite(image,fname)
 
 % enviwrite          	- write ENVI image from MATLAB array (V. Guissard, Apr 29 2004)
 %
