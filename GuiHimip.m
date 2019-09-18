@@ -1,3 +1,4 @@
+
 function varargout = GuiHimip(varargin)
 % GUIHIMIP MATLAB code for GuiHimip.fig
 %      GUIHIMIP, by itself, creates a new GUIHIMIP or raises the existing
@@ -54,12 +55,15 @@ function GuiHimip_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to GuiHimip (see VARARGIN)
 
+% Config
+Config
+
 % Choose default command line output for GuiHimip
 handles.output = hObject;
 if (~isdeployed)
-    addpath('D:\Matlab\GUI_SOLSA');
-    addpath('D:\Matlab\GUI_SOLSA\Unmixing');
-    addpath('D:\Matlab\GUI_SOLSA\Utilities');
+    addpath(dir_HIMIP);
+    addpath(fullfile(dir_HIMIP, 'Unmixing'));
+    addpath(fullfile(dir_HIMIP, 'Utilities'));
 end
 % Display solsa logo
 if isdeployed

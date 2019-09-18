@@ -55,7 +55,7 @@ function GuiUnmixing_OpeningFcn(hObject, eventdata, handles, varargin)
 % varargin   command line arguments to GuiUnmixing (see VARARGIN)
 
 % Config
-Config
+%Config
 
 % Choose default command line output for GuiUnmixing
 handles.output = hObject;
@@ -733,7 +733,7 @@ fprintf('Unmixing, finished! \n')
     
 % Reshape the unmixing result matrix
 X_hat = reshape(X_hat_2d', [Np, Nc, Nm]);
-%X_hat = (X_hat - min(X_hat(:)))/(max(X_hat(:))-min(X_hat(:)));
+X_hat = (X_hat - min(X_hat(:)))/(max(X_hat(:))-min(X_hat(:)));
 handles.X_hat = X_hat;
 handles.rgb_imgCrop = rgb_imgCrop;
 
@@ -791,7 +791,7 @@ function loadUmPb_Callback(hObject, eventdata, handles)
 % hObject    handle to loadUmPb (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[fileName, pathName, oCancel] = uigetfile('*.mat', 'Select a file containing unmixing results', fullfile(dir_HIMIP,'Results'));
+[fileName, pathName, oCancel] = uigetfile('*.mat', 'Select a file containing unmixing results', Results'D:\Matlab\GUI_SOLSA\Results');
 if ~oCancel
     return
 end
@@ -898,7 +898,7 @@ for i = 1: length(listVal)
     subplot(1, nPlot, i+1), imagesc(res.x, res.y, sum(X_hat(:,:,libind_chop),3)), 
     title(keys{i}, 'Interpreter', 'none')
     xlabel('mm')
-    h = colorbar; %h.Limits = [0 1];
+    h = colorbar; h.Limits = [0 1];
 end
 subplot(1, nPlot, nPlot), imagesc(res.x, res.y, handles.rmse),
 title('RMSE'),
@@ -1139,13 +1139,13 @@ mineralInd = handles.mineralInd;
 f = figure(3);
 if(length(listVal) == 1)
     clf(f), imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal)) > curVal), title(sprintf('%s, at %2.2f', listStr{listVal}, curVal), 'Interpreter', 'none')
-    h = colorbar; %h.Limits = [0 1];
+    h = colorbar; h.Limits = [0 1];
 elseif(length(listVal) == 2)
     clf(f)
     subplot 121, imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal(1))) > curVal), title(sprintf('%s, at %2.2f', listStr{listVal(1)}, curVal), 'Interpreter', 'none')
-    h = colorbar; %h.Limits = [0 1];
+    h = colorbar; h.Limits = [0 1];
     subplot 122, imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal(2))) > curVal), title(sprintf('%s, at %2.2f', listStr{listVal(2)}, curVal), 'Interpreter', 'none')
-    h = colorbar; %h.Limits = [0 1];
+    h = colorbar; h.Limits = [0 1];
 elseif(length(listVal) <= 4)
     clf(f)
     for i = 1:length(listVal)
@@ -1156,11 +1156,11 @@ elseif(length(listVal)<=6)
     clf(f)
     for i = 1:length(listVal)
         subplot(2,3,i), imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal(i)))>curVal), title(sprintf('%s, at %2.2f', listStr{listVal(i)}, curVal), 'Interpreter', 'none')
-        h = colorbar; %h.Limits = [0 1];
+        h = colorbar; h.Limits = [0 1];
     end
 else
     clf(f), imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal(1))) > curVal), title(sprintf('%s, at %2.2f', listStr{listVal(1)}, curVal), 'Interpreter', 'none')
-    h = colorbar; %h.Limits = [0 1];
+    h = colorbar; h.Limits = [0 1];
 end
 
 % --- Executes during object creation, after setting all properties.
