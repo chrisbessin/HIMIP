@@ -56,9 +56,13 @@ function GuiManipulateSpectra_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Choose default command line output for GuiManipulateSpectra
 handles.output = hObject;
+
+%Config
+Config
+
 % Add paths
 if(~isdeployed)
-    addpath('D:\Matlab\GUI_SOLSA\Utilities')
+    addpath(fullfile(dir_HIMIP,'Utilities'))
 end
 
 % Display solsa logo

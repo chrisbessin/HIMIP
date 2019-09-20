@@ -22,7 +22,7 @@ function varargout = GuiUnmixing(varargin)
 
 % Edit the above text to modify the response to help GuiUnmixing
 
-% Last Modified by GUIDE v2.5 21-May-2019 10:24:28
+% Last Modified by GUIDE v2.5 19-Sep-2019 16:41:24
 
 % Author: Thanh Bui (thanh.bui@erametgroup.com)
 
@@ -55,7 +55,7 @@ function GuiUnmixing_OpeningFcn(hObject, eventdata, handles, varargin)
 % varargin   command line arguments to GuiUnmixing (see VARARGIN)
 
 % Config
-%Config
+Config
 
 % Choose default command line output for GuiUnmixing
 handles.output = hObject;
@@ -690,7 +690,10 @@ for i = 1: length(idx) %size(refl,1)
     waitbar(i/length(idx),f,sprintf('%d%% complete',int16(100*i/length(idx))))
     
     % Construct the appropriate data source
-    Y = refl_2d(idx{i},:)';
+    try
+        Y = refl_2d(idx{i},:)';
+    catch
+    end
     Y(isnan(Y)) = 0;
     Y(Y<=0) = min_number;
     if (dataSource == 1)        % Reflectance     
@@ -733,7 +736,16 @@ fprintf('Unmixing, finished! \n')
     
 % Reshape the unmixing result matrix
 X_hat = reshape(X_hat_2d', [Np, Nc, Nm]);
-X_hat = (X_hat - min(X_hat(:)))/(max(X_hat(:))-min(X_hat(:)));
+
+% Replace the proportion exceeding 1 by or below an epsilon by 0
+X_hat(X_hat < 0.02) = 0 ;
+X_hat(X_hat > 1) = 1 ;
+
+% Delete weak proportions and renormalise
+sum_prop = squeeze(sum(X_hat, [3]));
+X_test = bsxfun(@rdivide, X_hat, sum_prop);
+sum_prop_2 = squeeze(sum(X_test, [3]));
+
 handles.X_hat = X_hat;
 handles.rgb_imgCrop = rgb_imgCrop;
 
@@ -791,7 +803,7 @@ function loadUmPb_Callback(hObject, eventdata, handles)
 % hObject    handle to loadUmPb (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[fileName, pathName, oCancel] = uigetfile('*.mat', 'Select a file containing unmixing results', Results'D:\Matlab\GUI_SOLSA\Results');
+[fileName, pathName, oCancel] = uigetfile('*.mat', 'Select a file containing unmixing results', fullfile(dir_HIMIP,'Results'));
 if ~oCancel
     return
 end
@@ -831,9 +843,6 @@ guidata(hObject, handles)
 set(handles.mineralListLb, 'Value', length(handles.mineralDict.keys)) % Set the Value parameter of the listbox
 set(handles.mineralListLb, 'String', handles.mineralDict.keys)
 mineralListLb_Callback(handles.mineralListLb, eventdata, handles)
-
-
-
 
 
 % --- Executes on selection change in mineralListLb.
@@ -888,22 +897,57 @@ end
 % Display unmixing results
 f = figure(1);
 clf(f)
-nPlot = length(listVal) + 2;
+nPlot = length(listVal) + 3;
 subplot (1, nPlot, 1), imagesc(res.x, res.y, rgb_imgCrop), xlabel('mm'), ylabel('mm')
 title('False color RGB image')
-colorbar
+%colorbar
 for i = 1: length(listVal)
     libind = values{i};
     libind_chop = libind(libind <=size(X_hat,3));
     subplot(1, nPlot, i+1), imagesc(res.x, res.y, sum(X_hat(:,:,libind_chop),3)), 
     title(keys{i}, 'Interpreter', 'none')
     xlabel('mm')
-    h = colorbar; h.Limits = [0 1];
+    %h = colorbar; %h.Limits = [0 1];
+    colorbar; caxis([0 1]);
 end
-subplot(1, nPlot, nPlot), imagesc(res.x, res.y, handles.rmse),
+subplot(1, nPlot, nPlot-1), imagesc(res.x, res.y, handles.rmse),
 title('RMSE'),
 colorbar;
 
+% Compute Proportion of spectrum
+mean_prop = squeeze(mean(X_hat, [1 2]));
+table_prop = sortrows(table(mineralList, mean_prop,...
+                            'VariableNames', {'Minerals','Prop (%)'}),...
+                      'Prop (%)', {'descend'}) ;
+table_prop.cumsum = cumsum(table_prop.('Prop (%)')) ;
+table_prop.('Prop (%)') = num2cell(table_prop.('Prop (%)')*100) ;
+
+% Selection of the minerals making up to 95% of the sample
+tab_main_prop = table_prop(table_prop.cumsum < 0.95, [1,2]) ;
+
+% Display on the main window
+set(handles.propTable, 'Data', tab_main_prop{:,:},...
+                       'ColumnName', tab_main_prop.Properties.VariableNames,...
+                       'RowName', tab_main_prop.Properties.RowNames)
+
+% Display in the sub window 
+t = uitable(f, 'Data', tab_main_prop{:,:},...
+               'ColumnName', tab_main_prop.Properties.VariableNames,...
+               'RowName', tab_main_prop.Properties.RowNames);
+
+subplot(1, nPlot, nPlot),
+title('Proportion (%)');
+pos = get(subplot(1, nPlot, nPlot), 'position');
+
+%delete(subplot(1, nPlot, nPlot))
+
+
+set(t, 'ColumnWidth', {80});
+set(t, 'units', 'normalized');
+set(t, 'position', pos);
+axis off;
+                   
+assignin('base', 'mean_prop', mean_prop);
 
 % Update handles
 guidata(hObject, handles);
@@ -922,6 +966,7 @@ function mineralListLb_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
 
 % --- Executes on selection change in mineralDetailLb.
 function mineralDetailLb_Callback(hObject, eventdata, handles)
@@ -1139,13 +1184,13 @@ mineralInd = handles.mineralInd;
 f = figure(3);
 if(length(listVal) == 1)
     clf(f), imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal)) > curVal), title(sprintf('%s, at %2.2f', listStr{listVal}, curVal), 'Interpreter', 'none')
-    h = colorbar; h.Limits = [0 1];
+    h = colorbar; %h.Limits = [0 1];
 elseif(length(listVal) == 2)
     clf(f)
     subplot 121, imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal(1))) > curVal), title(sprintf('%s, at %2.2f', listStr{listVal(1)}, curVal), 'Interpreter', 'none')
-    h = colorbar; h.Limits = [0 1];
+    h = colorbar; %h.Limits = [0 1];
     subplot 122, imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal(2))) > curVal), title(sprintf('%s, at %2.2f', listStr{listVal(2)}, curVal), 'Interpreter', 'none')
-    h = colorbar; h.Limits = [0 1];
+    h = colorbar; %h.Limits = [0 1];
 elseif(length(listVal) <= 4)
     clf(f)
     for i = 1:length(listVal)
@@ -1156,11 +1201,11 @@ elseif(length(listVal)<=6)
     clf(f)
     for i = 1:length(listVal)
         subplot(2,3,i), imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal(i)))>curVal), title(sprintf('%s, at %2.2f', listStr{listVal(i)}, curVal), 'Interpreter', 'none')
-        h = colorbar; h.Limits = [0 1];
+        h = colorbar; %h.Limits = [0 1];
     end
 else
     clf(f), imagesc(res.x, res.y, X_hat(:,:,mineralInd(listVal(1))) > curVal), title(sprintf('%s, at %2.2f', listStr{listVal(1)}, curVal), 'Interpreter', 'none')
-    h = colorbar; h.Limits = [0 1];
+    h = colorbar; %h.Limits = [0 1];
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -1428,3 +1473,4 @@ set(handles.imgSlider, 'Value', 0.5);
 
 % Update handles
 guidata(hObject, handles)
+

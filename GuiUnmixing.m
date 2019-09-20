@@ -22,7 +22,7 @@ function varargout = GuiUnmixing(varargin)
 
 % Edit the above text to modify the response to help GuiUnmixing
 
-% Last Modified by GUIDE v2.5 21-May-2019 10:24:28
+% Last Modified by GUIDE v2.5 19-Sep-2019 16:41:24
 
 % Author: Thanh Bui (thanh.bui@erametgroup.com)
 
@@ -690,7 +690,13 @@ for i = 1: length(idx) %size(refl,1)
     waitbar(i/length(idx),f,sprintf('%d%% complete',int16(100*i/length(idx))))
     
     % Construct the appropriate data source
-    Y = refl_2d(idx{i},:)';
+    try
+        Y = refl_2d(idx{i},:)';
+    catch
+        msgbox('Update the Superpixel.')
+        return
+    end
+    
     Y(isnan(Y)) = 0;
     Y(Y<=0) = min_number;
     if (dataSource == 1)        % Reflectance     
@@ -733,7 +739,16 @@ fprintf('Unmixing, finished! \n')
     
 % Reshape the unmixing result matrix
 X_hat = reshape(X_hat_2d', [Np, Nc, Nm]);
-%X_hat = (X_hat - min(X_hat(:)))/(max(X_hat(:))-min(X_hat(:)));
+
+% Replace the proportion exceeding 1 by or below an epsilon by 0
+X_hat(X_hat < 0.02) = 0 ;
+X_hat(X_hat > 1) = 1 ;
+
+% Delete weak proportions and renormalise
+sum_prop = squeeze(sum(X_hat, [3]));
+X_test = bsxfun(@rdivide, X_hat, sum_prop);
+sum_prop_2 = squeeze(sum(X_test, [3]));
+
 handles.X_hat = X_hat;
 handles.rgb_imgCrop = rgb_imgCrop;
 
@@ -833,9 +848,6 @@ set(handles.mineralListLb, 'String', handles.mineralDict.keys)
 mineralListLb_Callback(handles.mineralListLb, eventdata, handles)
 
 
-
-
-
 % --- Executes on selection change in mineralListLb.
 function mineralListLb_Callback(hObject, eventdata, handles)
 % hObject    handle to mineralListLb (see GCBO)
@@ -888,22 +900,57 @@ end
 % Display unmixing results
 f = figure(1);
 clf(f)
-nPlot = length(listVal) + 2;
+nPlot = length(listVal) + 3;
 subplot (1, nPlot, 1), imagesc(res.x, res.y, rgb_imgCrop), xlabel('mm'), ylabel('mm')
 title('False color RGB image')
-colorbar
+%colorbar
 for i = 1: length(listVal)
     libind = values{i};
     libind_chop = libind(libind <=size(X_hat,3));
     subplot(1, nPlot, i+1), imagesc(res.x, res.y, sum(X_hat(:,:,libind_chop),3)), 
     title(keys{i}, 'Interpreter', 'none')
     xlabel('mm')
-    h = colorbar; %h.Limits = [0 1];
+    %h = colorbar; %h.Limits = [0 1];
+    colorbar; caxis([0 1]);
 end
-subplot(1, nPlot, nPlot), imagesc(res.x, res.y, handles.rmse),
+subplot(1, nPlot, nPlot-1), imagesc(res.x, res.y, handles.rmse),
 title('RMSE'),
 colorbar;
 
+% Compute Proportion of spectrum
+mean_prop = squeeze(mean(X_hat, [1 2]));
+table_prop = sortrows(table(mineralList, mean_prop,...
+                            'VariableNames', {'Minerals','Prop (%)'}),...
+                      'Prop (%)', {'descend'}) ;
+table_prop.cumsum = cumsum(table_prop.('Prop (%)')) ;
+table_prop.('Prop (%)') = num2cell(table_prop.('Prop (%)')*100) ;
+
+% Selection of the minerals making up to 95% of the sample
+tab_main_prop = table_prop(table_prop.cumsum < 0.95, [1,2]) ;
+
+% Display on the main window
+set(handles.propTable, 'Data', tab_main_prop{:,:},...
+                       'ColumnName', tab_main_prop.Properties.VariableNames,...
+                       'RowName', tab_main_prop.Properties.RowNames)
+
+% Display in the sub window 
+t = uitable(f, 'Data', tab_main_prop{:,:},...
+               'ColumnName', tab_main_prop.Properties.VariableNames,...
+               'RowName', tab_main_prop.Properties.RowNames);
+
+subplot(1, nPlot, nPlot),
+title('Proportion (%)');
+pos = get(subplot(1, nPlot, nPlot), 'position');
+
+%delete(subplot(1, nPlot, nPlot))
+
+
+set(t, 'ColumnWidth', {80});
+set(t, 'units', 'normalized');
+set(t, 'position', pos);
+axis off;
+                   
+assignin('base', 'mean_prop', mean_prop);
 
 % Update handles
 guidata(hObject, handles);
@@ -922,6 +969,7 @@ function mineralListLb_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
 
 % --- Executes on selection change in mineralDetailLb.
 function mineralDetailLb_Callback(hObject, eventdata, handles)
@@ -1428,3 +1476,4 @@ set(handles.imgSlider, 'Value', 0.5);
 
 % Update handles
 guidata(hObject, handles)
+

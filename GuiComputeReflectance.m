@@ -57,11 +57,14 @@ function GuiComputeReflectance_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to GuiComputeReflectance (see VARARGIN)
 
+% Config
+Config
+
 % Choose default command line output for GuiComputeReflectance
 handles.output = hObject;
 % Add paths
 if (~isdeployed)
-    addpath('D:\Matlab\GUI_SOLSA\Utilities')
+    addpath(fullfile(dir_HIMIP, 'Utilities'))
 end
 
 
