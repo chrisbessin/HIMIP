@@ -25,13 +25,13 @@ if (exist(refl_file, 'file'))   %the reflectance was already computed
     fprintf('The reflectance existed \n')
     info = ReadEnviHdr(refl_hdr_file);
     wavelength = info.Wavelength;
-    lines = info.lines;
+    lines = info.lines-5;
     samples = info.samples;
     bands = info.bands;
     refl = multibandread(refl_file, [lines, samples, bands],'single',0, 'bil','ieee-le' ); 
 else        
     info = ReadEnviHdr(file_hdr);
-    lines = info.lines;
+    lines = info.lines-5;
     samples = info.samples;
     bands = info.bands;
     wavelength_org = info.Wavelength;
@@ -66,6 +66,7 @@ else
         info.fwhm = info.fwhm(short_range_idx);
     end
     info.bands = length(wavelength);
+    info.lines = lines;
     % Write file
     assignin('base', 'refl', refl)
     multibandwrite(refl, refl_file, 'bil', 'precision', 'single'); % specify the precision is very important

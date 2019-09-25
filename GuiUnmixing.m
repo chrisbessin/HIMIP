@@ -895,7 +895,8 @@ for i = 1: length(listVal)
     subplot(1, nPlot, i+1), imagesc(res.x, res.y, sum(X_hat(:,:,libind_chop),3)), 
     title(keys{i}, 'Interpreter', 'none')
     xlabel('mm')
-    h = colorbar; h.Limits = [0 1];
+    %h = colorbar; h.Limits = [0 1];
+    colorbar; caxis([0 1])
 end
 subplot(1, nPlot, nPlot), imagesc(res.x, res.y, handles.rmse),
 title('RMSE'),
