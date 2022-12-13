@@ -1,12 +1,17 @@
 
 # Folders
-Results/
-SOLSA_HIMIP/
-Test/
+
+**.prj
 
 # Text files
 *.txt
+*.docx
 
+# Autosave files
+**.asv
 
+# .exe
+**/interface/GUI_fused_HyperSpec/
+**/interface/run_HyperSpectral/
 
-
+**.exe
