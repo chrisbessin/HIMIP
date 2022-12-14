@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "SolsaID": "ER-CB00-0002",
+        "acquisition_date": "",
+        "kind": "natural",
+        "name": "CB2",
+        "preparation_conditions": null,
+        "special_details": "Serpentinized Harzburgite sdfs",
+        "specimen_type": "drill core"
+      },
+      "type": "sample"
+    }
+  ]
+}

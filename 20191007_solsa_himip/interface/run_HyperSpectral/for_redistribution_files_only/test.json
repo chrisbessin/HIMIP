@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "analytical_conditions": "Panalytical Axios - Samples were dried at 105°C and analysis are carried on calcined samples (1000°C - fused bead). Analyses have been performed at ERAMET Research, Trappes, France.",
+        "id": 1,
+        "laboratory_id": null,
+        "measurement_date": null,
+        "region_bottom": null,
+        "region_top": null,
+        "revision_id": 2013,
+        "sample_id": 64,
+        "special_details": null,
+        "uuid": "42255f6a-f17b-11e7-a61e-a1fac0e530ac",
+        "xrf_device_id": null
+      },
+      "id": 1,
+      "links": {
+        "self": "https://solsa.crystallography.net/db-v0.13.1/test_samples/experiment_xrf/1"
+      },
+      "type": "experiment_xrf"
+    }
+  ],
+  "metadata": {
+    "data_returned": 1,
+    "query": {
+      "representation": "/db-v0.13.1/test_samples/experiment_xrf/1?format=json&depth=0"
+    },
+    "time_stamp": "2020-05-06T16:47:45Z"
+  }
+}

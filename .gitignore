@@ -1,7 +1,13 @@
 
 # Folders
+Archive_Thanh/*
+Hyper_Spectral_Libraries/*
+Hyperspectral_GUI/*
 
+# Files
 **.prj
+**.ps
+**.zip
 
 # Text files
 *.txt
@@ -9,16 +15,4 @@
 
 # Autosave files
 **.asv
-
-# .exe
-**/interface/GUI_fused_HyperSpec/
-**/interface/run_HyperSpectral/
-
-ID2A/HS_Analysis/HIMIP/20191007_solsa_himip/Archive_Thanh/*
-HIMIP\20191007_solsa_himip\Archive_Thanh\*
-20191007_solsa_himip/Archive_Thanh/*
-Archive_Thanh/*
-ID2A/HS_Analysis/HIMIP/Hyperspectral_GUI/*
-ID2A/HS_Analysis/HIMIP/Hyper_Spectral_Libraries/*
-
 **.exe

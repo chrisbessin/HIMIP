@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "region_bottom": 5,
+        "region_top": 5,
+        "sample_id": {
+          "attributes": {
+            "SolsaID": "ER-CB00-0002",
+			"uuid": "d6ded55a-8fbc-11ea-b9a2-ed68737f1a54"
+			},
+		  "type": "sample"
+		},
+        "uuid": "191a2509-1f52-4406-b891-bd7f1dd4b29c"
+      },
+      "type": "region_of_interest"
+    }
+  ]
+}

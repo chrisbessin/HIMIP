@@ -1,0 +1,107 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "SolsaID": "ER-CB00-0001",
+        "acquisition_date": null,
+        "id": 678,
+        "kind": "natural",
+        "name": "CB1",
+        "preparation_conditions": null,
+        "revision_id": {
+          "attributes": {
+            "db_user": "Bessin",
+            "env_text": "AUTH_TYPE: Basic\nCONTENT_LENGTH: 321\nCONTENT_TYPE: application/json\nCONTEXT_DOCUMENT_ROOT: /var/www/html\nCONTEXT_PREFIX: \nDOCUMENT_ROOT: /var/www/html\nGATEWAY_INTERFACE: CGI/1.1\nHTTPS: on\nHTTP_ACCEPT: */*\nHTTP_HOST: solsa.crystallography.net\nHTTP_USER_AGENT: curl/7.68.0\nPATH: \nPERL_TEXT_CSV: Text::CSV_XS\nQUERY_STRING: \nREDIRECT_HTTPS: on\nREDIRECT_SSL_TLS_SNI: solsa.crystallography.net\nREDIRECT_STATUS: 200\nREDIRECT_URL: /db/test_samples/sample\nREMOTE_ADDR: 88.126.75.248\nREMOTE_PORT: 45528\nREMOTE_USER: /OU=SOLSA/CN=Christophe Bessin/emailAddress=christophe.bessin@eramet.com\nREQUEST_METHOD: PUT\nREQUEST_SCHEME: https\nREQUEST_URI: /db/test_samples/sample\nSCRIPT_FILENAME: /var/www/html/db/cgi-bin/db.pl\nSCRIPT_NAME: /db/cgi-bin/db.pl\nSERVER_ADDR: 172.16.1.101\nSERVER_ADMIN: webmaster@localhost\nSERVER_NAME: solsa.crystallography.net\nSERVER_PORT: 443\nSERVER_PROTOCOL: HTTP/1.1\nSERVER_SIGNATURE: <address>Apache/2.4.38 (Debian) Server at solsa.crystallography.net Port 443</address>\n\nSERVER_SOFTWARE: Apache/2.4.38 (Debian)\nSSL_TLS_SNI: solsa.crystallography.net",
+            "http_host": "solsa.crystallography.net",
+            "http_user_agent": "curl/7.68.0",
+            "id": 2034,
+            "log_message": null,
+            "remote_addr": "88.126.75.248",
+            "remote_user": "/OU=SOLSA/CN=Christophe Bessin/emailAddress=christophe.bessin@eramet.com",
+            "server_addr": "172.16.1.101",
+            "server_name": "solsa.crystallography.net",
+            "timestamp": "2020-05-06 17:13:00",
+            "uuid": "d6dd2232-8fbc-11ea-b9a2-ed68737f1a54"
+          },
+          "id": 2034,
+          "type": "revision"
+        },
+        "special_details": "Serpentinized Harzburgite",
+        "specimen_type": "drill core",
+        "uuid": "d6ded55a-8fbc-11ea-b9a2-ed68737f1a54"
+      },
+      "id": 678,
+      "links": {
+        "self": "https://solsa.crystallography.net/db/test_samples/sample/678"
+      },
+      "relationships": {
+        "custom_sample_label": {
+          "data": []
+        },
+        "drill_rig_parameters": {
+          "data": []
+        },
+        "experiment_carbon_sulfur": {
+          "data": []
+        },
+        "experiment_corescan": {
+          "data": []
+        },
+        "experiment_epma": {
+          "data": []
+        },
+        "experiment_loi": {
+          "data": []
+        },
+        "experiment_optical": {
+          "data": []
+        },
+        "experiment_sem": {
+          "data": []
+        },
+        "experiment_xrd": {
+          "data": []
+        },
+        "experiment_xrf": {
+          "data": []
+        },
+        "file": {
+          "data": []
+        },
+        "lithology": {
+          "data": []
+        },
+        "natural_sample": {
+          "data": []
+        },
+        "phase": {
+          "data": []
+        },
+        "region_of_interest": {
+          "data": []
+        },
+        "related_COD_entry": {
+          "data": []
+        },
+        "related_HOD_entry": {
+          "data": []
+        },
+        "related_ROD_entry": {
+          "data": []
+        },
+        "related_sample": {
+          "data": []
+        }
+      },
+      "type": "sample"
+    }
+  ],
+  "metadata": {
+    "data_matched": 1,
+    "data_returned": 1,
+    "query": {
+      "representation": "/db/test_samples/sample/d6ded55a-8fbc-11ea-b9a2-ed68737f1a54?format=json"
+    },
+    "time_stamp": "2020-05-06T17:15:25Z"
+  }
+}

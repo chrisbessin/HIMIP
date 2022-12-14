@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "attributes": {
+		"uuid": "d6ded55a-8fbc-11ea-b9a2-ed68737f1a54",
+		"sample_id": 678,
+        "region_top": 2,
+        "region_bottom": 3,
+        "special_details": null
+      },
+      "type": "region_of_interest"
+    }
+  ]
+}

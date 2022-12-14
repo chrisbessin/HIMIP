@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "analytical_conditions": "test test",
+		"id": 2,
+        "laboratory_id": null,
+        "measurement_date": null,
+        "region_bottom": null,
+        "region_top": null,
+        "revision_id": 2020,
+		"sample_id": 9999,
+        "special_details": null,
+        "xrf_device_id": null
+      },
+      "id": 2,
+      "type": "experiment_xrf"
+    }
+  ]
+}
