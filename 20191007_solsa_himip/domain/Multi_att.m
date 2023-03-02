@@ -719,7 +719,7 @@ function index = index_close_value_reg_array(array_val, value)
     % Finding the indexes
     dist = abs(array_val - value);
     step = (max(array_val) - min(array_val))/(length(array_val) - 1); % average step
-    if min(dist) < step
+    if min(dist) < step*200
         [~,index] = min(dist);
     else
         error('Could not find a element close enough')

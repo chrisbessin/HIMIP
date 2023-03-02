@@ -57,12 +57,14 @@ handles.output = hObject;
 % Initialisations
 try
     % Run from Matlab 
-    run('D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m');
+    %run('D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m');
+    run(fullfile(pwd, 'HS_Analysis', 'HIMIP', '20191007_solsa_himip', 'utils','Config.m'));
     
     % Add paths
     folders = [{'infrastructure'},{'domain'},{'application'}, {'interface'},{'utils'}];
     for i = 1:length(folders)
-        addpath(['D:\SOLSA\HIMIP\20191007_solsa_himip\',folders{i}])
+        %addpath(['D:\SOLSA\HIMIP\20191007_solsa_himip\',folders{i}])
+        addpath([pwd, folders{i}])
     end
 catch
     % Run from the GUI

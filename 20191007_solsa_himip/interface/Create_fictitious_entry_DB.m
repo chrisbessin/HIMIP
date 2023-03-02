@@ -1,7 +1,10 @@
 conda_exe = 'C:\Users\christophe.bessin\AppData\Local\Continuum\anaconda3\Scripts\activate.bat C:\Users\christophe.bessin\AppData\Local\Continuum\anaconda3';
 
-config_path = 'D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m';
-run(config_path)
+%config_path = 'D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m';
+
+%run(config_path)
+
+run(fullfile(pwd, 'utils','Config.m'))
 
 config_struct.data.attributes.('uuid') = char(java.util.UUID.randomUUID);
 config_struct.data.attributes.('label') = 'corsen3';

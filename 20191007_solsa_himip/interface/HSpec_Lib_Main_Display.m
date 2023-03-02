@@ -56,7 +56,7 @@ function HSpec_Lib_Main_Display_OpeningFcn(hObject, eventdata, handles, varargin
 handles.output = hObject;
 
 % Initialisations
-run('D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m');
+run(fullfile(pwd, 'HS_Analysis', 'HIMIP', '20191007_solsa_himip', 'utils','Config.m'))
 
 % Objects initialisations
 % Library

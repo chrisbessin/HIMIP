@@ -1,7 +1,7 @@
 % Config
 % Initialisations
 global cfg
-run('D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m');
+run(fullfile(pwd, 'utils','Config.m'));
 
 % Library
 dir_lib = cfg.dir_path_library;

@@ -1,5 +1,6 @@
 global cfg
-run('D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m');
+%run('D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m');
+run(fullfile(pwd, 'utils','Config.m'))
 
 % Update of the dir_data
 dir = 'D:\SOLSA\DATA\111_fused\Ech_ref\';

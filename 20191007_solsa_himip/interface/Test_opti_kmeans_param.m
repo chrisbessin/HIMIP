@@ -1,5 +1,6 @@
 global cfg
-run('D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m');
+%run('D:\SOLSA\HIMIP\20191007_solsa_himip\utils\Config.m');
+run(fullfile(pwd, 'utils','Config.m'))
 
 % Update of the dir_data
 dir = 'D:\SOLSA\DATA\111_fused\Ech_ref\';
@@ -7,7 +8,8 @@ dir = 'D:\SOLSA\DATA\111_fused\Ech_ref\';
 samples = [{'ER-NC00-0056'},{'ER-NC00-0059'},{'ER-NC00-0049_1'}];
 
 % Library
-dir_lib = 'D:\SOLSA\HIMIP\Hyper_Spectral_Libraries';
+%dir_lib = 'D:\SOLSA\HIMIP\Hyper_Spectral_Libraries';
+dir_lib = fullfile(pwd, '.', 'Hyper_Spectral_Libraries');
 library_file = 'Library_fus_VNIR_SWIR_final.csv';
 
 spectrum_types = [1,7];

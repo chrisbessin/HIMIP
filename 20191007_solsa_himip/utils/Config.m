@@ -1,6 +1,6 @@
 global cfg
 
-cfg.dir_proj = 'D:\\SOLSA\\HIMIP';
+cfg.dir_proj = 'D:\\SOLSA\\Solsa_code\\solsa\\ID2A\\HS_Analysis\\HIMIP';
 cfg.dir_path_library = [cfg.dir_proj, '\\Hyper_Spectral_Libraries'];
 cfg.path_library = [cfg.dir_path_library, '\\Library_fus_VNIR_SWIR_final.csv'];
 cfg.dir_data_fus = 'D:\\SOLSA\\DATA\\111_fused\\Ech_ref';
