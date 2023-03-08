@@ -64,7 +64,7 @@ try
     folders = [{'infrastructure'},{'domain'},{'application'}, {'interface'},{'utils'}];
     for i = 1:length(folders)
         %addpath(['D:\SOLSA\HIMIP\20191007_solsa_himip\',folders{i}])
-        addpath([pwd, folders{i}])
+        addpath(fullfile(pwd, 'HS_Analysis', 'HIMIP', '20191007_solsa_himip', folders{i}))
     end
 catch
     % Run from the GUI
