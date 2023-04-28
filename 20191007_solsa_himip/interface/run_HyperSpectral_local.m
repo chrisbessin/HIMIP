@@ -38,9 +38,8 @@ config_path D:\SOLSA\HIMIP\Hyperspectral_GUI\Config.m check 0
 warning ('off','all');
 
 % Init values of the arguments
-
-v.acquisition_path = 'D:\SOLSA\Quick_interface\data\results\ER-NC00-0072_1';
-v.config_path = 'D:\SOLSA\HIMIP\Hyperspectral_GUI\Config.m';
+v.acquisition_path = 'D:\SOLSA\Solsa_code\solsa\ID2A\Master_UI\Quick_interface\data\results\ER-NC00-0072';
+v.config_path = 'D:\SOLSA\Solsa_code\solsa\ID2A\HS_Analysis\HIMIP\Hyperspectral_GUI\Config.m';
 v.check = '0';
 
 [~,SolsaID,~] = fileparts(v.acquisition_path);
