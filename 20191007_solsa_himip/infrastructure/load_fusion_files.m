@@ -29,9 +29,14 @@ function [indexes,coord_def,att_groups] = load_fusion_files(dir_path_fusion,x_sa
     dirs = [{'VNIR'}, {'SWIR'}, {'XRF'}];
     for d = 1 : length(dirs)
         name = lower(dirs(d));
-        file_tmp = fullfile(dir_path_fusion,'S2P',dirs(d),'index_x+index_y.mat');
-        if isfile(file_tmp{1})
-            indexes.(name{1}) = load(file_tmp{1});
+        file_tmp_1 = fullfile(dir_path_fusion,'S2P',dirs(d),'index_x+index_y.mat');
+        file_tmp_2 = fullfile(dir_path_fusion,'S2P',dirs(d),'fusion_xrf.mat');
+        if isfile(file_tmp_1{1})
+            indexes.(name{1}) = load(file_tmp_1{1});
+            indexes.(name{1}).index_x = rot90(indexes.(name{1}).index_x,-1);
+            indexes.(name{1}).index_y = rot90(indexes.(name{1}).index_y,-1);
+        elseif isfile(file_tmp_2{1})
+            indexes.(name{1}) = load(file_tmp_2{1});
             indexes.(name{1}).index_x = rot90(indexes.(name{1}).index_x,-1);
             indexes.(name{1}).index_y = rot90(indexes.(name{1}).index_y,-1);
         end

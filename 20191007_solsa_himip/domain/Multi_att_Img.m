@@ -570,42 +570,42 @@ classdef Multi_att_Img < Multi_att
 end
 
 function [idx_sta,idx_end] = find_idx_longest_interval(vec)
-%
-% Returns the indexes of the longest interval of a boolean array
-%
-
-if size(vec,2)==1
-    vec = vec';
-end
-
-vec = diff([0,vec]);
-
-% Finds the starts and ends of segments
-idx_sta_all = strfind(vec, 1);
-idx_end_all = strfind(vec, -1);
-
-% Add values for segments touching the border
-% Empty values
-if isempty(idx_sta_all)
-    idx_sta_all = 1;
-end
-if isempty(idx_end_all)
-    idx_end_all = length(vec);
-end
-% Inconsistencies
-if idx_sta_all(1) > idx_end_all(1)
-    idx_sta_all = [1, idx_sta_all];
-end
-if idx_sta_all(end) > idx_end_all(end)
-    idx_end_all = [idx_end_all, length(vec)];
-end
-
-% Finds the longest segment
-len = idx_end_all - idx_sta_all;
-[~,id] = max(len);
-
-idx_sta = idx_sta_all(id);
-idx_end = idx_end_all(id);
+    %
+    % Returns the indexes of the longest interval of a boolean array
+    %
+    
+    if size(vec,2)==1
+        vec = vec';
+    end
+    
+    vec = diff([0,vec]);
+    
+    % Finds the starts and ends of segments
+    idx_sta_all = strfind(vec, 1);
+    idx_end_all = strfind(vec, -1);
+    
+    % Add values for segments touching the border
+    % Empty values
+    if isempty(idx_sta_all)
+        idx_sta_all = 1;
+    end
+    if isempty(idx_end_all)
+        idx_end_all = length(vec);
+    end
+    % Inconsistencies
+    if idx_sta_all(1) > idx_end_all(1)
+        idx_sta_all = [1, idx_sta_all];
+    end
+    if idx_sta_all(end) > idx_end_all(end)
+        idx_end_all = [idx_end_all, length(vec)];
+    end
+    
+    % Finds the longest segment
+    len = idx_end_all - idx_sta_all;
+    [~,id] = max(len);
+    
+    idx_sta = idx_sta_all(id);
+    idx_end = idx_end_all(id);
 end
 
 function [sel_def, min_max_idx_xy] = get_selection(coord_def)
