@@ -172,56 +172,56 @@ function [darkref_path, whiteref_path] = find_ref_path(dir_sample,darkref_tag,wh
 end
 
 function [info, data] = ProcessEnviDarkWhiteref(dir_sample,sample_tag)
-global cfg
-
-% Input files
-data_path = fullfile(dir_sample, strcat(sample_tag, '.raw'));
-data_path_header = fullfile(dir_sample, strcat(sample_tag, '.hdr'));
-
-% get info from Header
-info = ReadEnviHdr(data_path_header);
-if info.data_type == 12
-    data_type = 'uint16';
-elseif info.data_type == 4
-    data_type = 'single';
-end
-if info.byte_order == 0
-    byte_order = 'ieee-le';
-end
-
-% Read the sample data - lines-5 : to avoid issues with the
-% multibandread check 'file is too small to contain the
-% specified data', it would require further analysis
-info.lines = info.lines - 5;
-data = multibandread(data_path, [info.lines, info.samples, info.bands],data_type,0,info.interleave,byte_order);
-
-% Get dark and white references [data_dark_ave_rep,data_white_ave_rep]
-[darkref_path, whiteref_path] = find_ref_path(dir_sample,cfg.darkref_tag,cfg.whiteref_tag);
-
-% Load the dark and white files
-data_white = multibandread(whiteref_path,[70, info.samples, info.bands],data_type,0,info.interleave,byte_order); 
-data_dark = multibandread(darkref_path,[70, info.samples, info.bands],data_type,0,info.interleave,byte_order); 
-
-% Resample if sample less than 5nm
-crit = (max(info.Wavelength) - min(info.Wavelength))/length(info.Wavelength);
-if crit < 3.75
-    data = data(:,:,1:2:end);
-    data_white = data_white(:,:,1:2:end);
-    data_dark = data_dark(:,:,1:2:end);
-    info.Wavelength = info.Wavelength(1:2:end);
-end
-
-% Average of the references
-data_dark_ave = mean(data_dark,1);
-data_white_ave = mean(data_white,1);
-
-% Reflectance calculation
-data = (data - repmat(data_dark_ave,info.lines,1,1))./(repmat(data_white_ave,info.lines,1,1) - repmat(data_dark_ave,info.lines,1,1) + eps);
-
-% Set impossible values to NaN, correction is made further on to accelerate
-% the process
-data(data < 0) = 0;
-data(data > 1) = 1;
+    global cfg
+    
+    % Input files
+    data_path = fullfile(dir_sample, strcat(sample_tag, '.raw'));
+    data_path_header = fullfile(dir_sample, strcat(sample_tag, '.hdr'));
+    
+    % get info from Header
+    info = ReadEnviHdr(data_path_header);
+    if info.data_type == 12
+        data_type = 'uint16';
+    elseif info.data_type == 4
+        data_type = 'single';
+    end
+    if info.byte_order == 0
+        byte_order = 'ieee-le';
+    end
+    
+    % Read the sample data - lines-5 : to avoid issues with the
+    % multibandread check 'file is too small to contain the
+    % specified data', it would require further analysis
+    info.lines = info.lines - 5;
+    data = multibandread(data_path, [info.lines, info.samples, info.bands],data_type,0,info.interleave,byte_order);
+    
+    % Get dark and white references [data_dark_ave_rep,data_white_ave_rep]
+    [darkref_path, whiteref_path] = find_ref_path(dir_sample,cfg.darkref_tag,cfg.whiteref_tag);
+    
+    % Load the dark and white files
+    data_white = multibandread(whiteref_path,[70, info.samples, info.bands],data_type,0,info.interleave,byte_order); 
+    data_dark = multibandread(darkref_path,[70, info.samples, info.bands],data_type,0,info.interleave,byte_order); 
+    
+    % Resample if sample less than 5nm
+    crit = (max(info.Wavelength) - min(info.Wavelength))/length(info.Wavelength);
+    if crit < 3.75
+        data = data(:,:,1:2:end);
+        data_white = data_white(:,:,1:2:end);
+        data_dark = data_dark(:,:,1:2:end);
+        info.Wavelength = info.Wavelength(1:2:end);
+    end
+    
+    % Average of the references
+    data_dark_ave = mean(data_dark,1);
+    data_white_ave = mean(data_white,1);
+    
+    % Reflectance calculation
+    data = (data - repmat(data_dark_ave,info.lines,1,1))./(repmat(data_white_ave,info.lines,1,1) - repmat(data_dark_ave,info.lines,1,1) + eps);
+    
+    % Set impossible values to NaN, correction is made further on to accelerate
+    % the process
+    data(data < 0) = 0;
+    data(data > 1) = 1;
 end
 
 function info = ReadEnviHdr(hdrfile)
